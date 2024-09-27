@@ -95,7 +95,7 @@ export default (o, c, d) => {
   proto.tz = function (timezone = defaultTimezone, keepLocalTime) {
     const oldOffset = this.utcOffset()
     const date = this.toDate()
-    const target = date.toLocaleString('en-US', { timeZone: timezone })
+    const target = getDateTimeFormat(timezone).format(date);
     const diff = Math.round((date - new Date(target)) / 1000 / 60)
     const offset = (-Math.round(date.getTimezoneOffset() / 15) * 15) - diff
     const isUTC = !Number(offset)
